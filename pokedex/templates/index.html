@@ -1,0 +1,41 @@
+{% extends 'pokedex/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Pokedex</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="{% url 'index' %}" method="get">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="pokemon_name" placeholder="Search Pokemon">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-columns">
+                    {% for pokemon in pokemon_list %}
+                        <div class="card">
+                            <img class="card-img-top" src="{{ pokemon.front_default }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{% url 'pokemon' pokemon.id %}">{{ pokemon.name }}</a>
+                                </h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
