@@ -6,6 +6,8 @@ from django.db import models
 # Create your models here.
 class Pokemon(models.Model):
     name = models.CharField(max_length=200)
+    type1 = models.CharField(max_length=200)
+    type2 = models.CharField(max_length=200)
     height = models.IntegerField()
     weight = models.IntegerField()
     attack = models.IntegerField()

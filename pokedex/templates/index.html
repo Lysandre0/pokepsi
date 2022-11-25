@@ -1,41 +1,36 @@
-{% extends 'pokedex/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-center">Pokedex</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <form action="{% url 'index' %}" method="get">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="pokemon_name" placeholder="Search Pokemon">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Search</button>
-                            </div>
-                        </div>
+<div class="container">
+    <div class="search">
+        <div class="">
+            <form action="{% url 'index' %}" method="GET">
+                <div class="">
+                    <input type="text" class="" placeholder="Search" name="search">
+                    <div class="">
+                        <button class="" type="submit">Search</button>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card-columns">
-                    {% for pokemon in pokemon_list %}
-                        <div class="card">
-                            <img class="card-img-top" src="{{ pokemon.front_default }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="{% url 'pokemon' pokemon.id %}">{{ pokemon.name }}</a>
-                                </h5>
-                            </div>
-                        </div>
-                    {% endfor %}
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+    <div class="list">
+        {% for pokemon in pokemon %}
+        <div class="">
+            <a href="{% url 'pokemon' pokemon.id %}" class="listCard">
+                <img src="{{ pokemon.front_default }}" class="" alt="{{ pokemon.name }}">
+                <div class="">
+                    <div class="">{{ pokemon.id }}</div>
+                    <h5 class="">{{ pokemon.name }}</h5>
+                    {% if pokemon.type2 %}
+                    <p class="">{{ pokemon.type1 }}/{{ pokemon.type2 }}</p>
+                    {% else %}
+                    <p class="">{{ pokemon.type1 }}</p>
+                    {% endif %}
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}

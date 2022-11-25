@@ -9,6 +9,11 @@ def get_pokemon_data():
         response = requests.get(url)
         pokemon_data = response.json()
         name = pokemon_data['name'].capitalize()
+        type1 = pokemon_data['types'][0]['type']['name'].capitalize()
+        if len(pokemon_data['types']) > 1:
+            type2 = pokemon_data['types'][1]['type']['name'].capitalize()
+        else:
+            type2 = ''
         height = pokemon_data['height']
         weight = pokemon_data['weight']
         attack = pokemon_data['stats'][4]['base_stat']
@@ -21,19 +26,27 @@ def get_pokemon_data():
         back_default = pokemon_data['sprites']['back_default']
         front_shiny = pokemon_data['sprites']['front_shiny']
         back_shiny = pokemon_data['sprites']['back_shiny']
-        pokemon = Pokemon(name=name, height=height, weight=weight, attack=attack, defense=defense, special_attack=special_attack, special_defense=special_defense, hp=hp, speed=speed, front_default=front_default, back_default=back_default, front_shiny=front_shiny, back_shiny=back_shiny)
+        pokemon = Pokemon(name=name, type1=type1, type2=type2, height=height, weight=weight, attack=attack, defense=defense, special_attack=special_attack, special_defense=special_defense, hp=hp, speed=speed, front_default=front_default, back_default=back_default, front_shiny=front_shiny, back_shiny=back_shiny)
         pokemon.save()
 
 #if model is empty, get data from PokeAPI and save to database
 if Pokemon.objects.count() == 0:
     get_pokemon_data()
 
-#render index page
+#render index page with all pokemon and search with automatic refresh 
 def index(request):
     pokemon = Pokemon.objects.all()
-    return render(request, 'pokedex/index.html', {'pokemon': pokemon})
+    search = request.GET.get('search')
+    if search:
+        pokemon = pokemon.filter(name__icontains=search)
+    return render(request, 'index.html', {'pokemon': pokemon})
 
 #define pokemon_name
 def pokemon(request, pokemon_id):
     pokemon = Pokemon.objects.get(id=pokemon_id)
-    return render(request, 'pokedex/pokemon.html', {'pokemon': pokemon})
+    return render(request, 'pokemon.html', {'pokemon': pokemon})
+
+
+# create script to auto refresh when search in index.html is used
+
+

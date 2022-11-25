@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="">
+        <div class="">
+            <img src="{{ pokemon.front_default }}" class="" alt="{{ pokemon.name }}">
+            <img src="{{ pokemon.back_default }}" class="" alt="{{ pokemon.name }}">
+            <img src="{{ pokemon.front_shiny }}" class="" alt="{{ pokemon.name }}">
+            <img src="{{ pokemon.back_shiny }}" class="" alt="{{ pokemon.name }}">
+        </div>
+        <div class="">
+            <h1>{{ pokemon.name }}</h1>
+            <p>Type: {{ pokemon.type }}</p>
+            <p>Height: {{ pokemon.height }}</p>
+            <p>Weight: {{ pokemon.weight }}</p>
+            <p>Attack: {{ pokemon.attack }}</p>
+            <p>Defense: {{ pokemon.defense }}</p>
+            <p>Special Attack: {{ pokemon.special_attack }}</p>
+            <p>Special Defense: {{ pokemon.special_defense }}</p>
+            <p>HP: {{ pokemon.hp }}</p>
+            <p>Speed: {{ pokemon.speed }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
