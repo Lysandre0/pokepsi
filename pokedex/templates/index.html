@@ -2,35 +2,31 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <div class="search">
-        <div class="">
-            <form action="{% url 'index' %}" method="GET">
-                <div class="">
-                    <input type="text" class="" placeholder="Search" name="search">
-                    <div class="">
-                        <button class="" type="submit">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="list">
+    {% if pokemon %}
+    <div class="row">
         {% for pokemon in pokemon %}
-        <div class="">
-            <a href="{% url 'pokemon' pokemon.id %}" class="listCard">
-                <img src="{{ pokemon.front_default }}" class="" alt="{{ pokemon.name }}">
-                <div class="">
-                    <div class="">{{ pokemon.id }}</div>
-                    <h5 class="">{{ pokemon.name }}</h5>
+        <div class="col-md-4">
+            <a href="{% url 'pokemon' pokemon.id %}" class="card">
+                <img style="width: 200px; height: auto;" src="{{ pokemon.front_default }}" alt="{{ pokemon.name }}">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-weight: bold;">
+                        <p>{{ pokemon.name }}</p>
+                    </h5>
                     {% if pokemon.type2 %}
-                    <p class="">{{ pokemon.type1 }}/{{ pokemon.type2 }}</p>
+                    <span style="display:flex; ">
+                        <p class="type-badge">{{ pokemon.type1 }}</p>
+                        <p class="type-badge">{{ pokemon.type2 }}</p>
+                        </span>
                     {% else %}
-                    <p class="">{{ pokemon.type1 }}</p>
-                    {% endif %}
+                        <p class="type-badge">{{ pokemon.type1 }}</p>
+                {% endif %}
+                </div>
             </a>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <a href="{% url 'team' %}" class="btn btn-primary" style="color: #f5F5F5; font-weight: bold;border-radius: 2rem; position:fixed; bottom: 5rem; right: 5rem; font-size: 1.5rem; padding: 1rem; text-transform: uppercase">
+       Create team</a>
 </div>
-</div>
+{% endif %}
 {% endblock %}

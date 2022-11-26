@@ -1,4 +1,5 @@
 import requests
+import random
 from django.shortcuts import render
 from .models import Pokemon
 
@@ -26,14 +27,14 @@ def get_pokemon_data():
         back_default = pokemon_data['sprites']['back_default']
         front_shiny = pokemon_data['sprites']['front_shiny']
         back_shiny = pokemon_data['sprites']['back_shiny']
-        pokemon = Pokemon(name=name, type1=type1, type2=type2, height=height, weight=weight, attack=attack, defense=defense, special_attack=special_attack, special_defense=special_defense, hp=hp, speed=speed, front_default=front_default, back_default=back_default, front_shiny=front_shiny, back_shiny=back_shiny)
+        pokemon = Pokemon(name=name, type1=type1, type2=type2, height=height/10, weight=weight/10, attack=attack, defense=defense, special_attack=special_attack, special_defense=special_defense, hp=hp, speed=speed, front_default=front_default, back_default=back_default, front_shiny=front_shiny, back_shiny=back_shiny)
         pokemon.save()
 
-#if model is empty, get data from PokeAPI and save to database
+#if model is empty, call get_pokemon_data() to populate database
 if Pokemon.objects.count() == 0:
     get_pokemon_data()
 
-#render index page with all pokemon and search with automatic refresh 
+#render index page with all pokemon and search bar
 def index(request):
     pokemon = Pokemon.objects.all()
     search = request.GET.get('search')
@@ -41,12 +42,16 @@ def index(request):
         pokemon = pokemon.filter(name__icontains=search)
     return render(request, 'index.html', {'pokemon': pokemon})
 
-#define pokemon_name
+#render pokemon page with all pokemon data
 def pokemon(request, pokemon_id):
     pokemon = Pokemon.objects.get(id=pokemon_id)
     return render(request, 'pokemon.html', {'pokemon': pokemon})
 
-
-# create script to auto refresh when search in index.html is used
-
+#create random pokemon team each time page is refreshed
+def team(request):
+    pokemon = Pokemon.objects.all()
+    team = []
+    for i in range(0, 6):
+        team.append(random.choice(pokemon))
+    return render(request, 'team.html', {'team': team})
 

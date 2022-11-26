@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: center; text-align: center; align-items: center">
+<div class="row" style="width:90%; text-align: center; display: flex; justify-content: center;margin-left: 1%;">
+    <div class="col-12">
+        <h1 style="font-weight: bold; text-transform: uppercase;  margin-right: 6%; margin-top: 5%; margin-bottom: 5%;">Choose your team!</h1>
+    </div>
+    {% for pokemon in team %}
+    <div class="col-2">
+        <a href="{% url 'pokemon' pokemon.id %}" class="card" style="text-align: center; width: 80%; height: 80%;padding-top: 1%;">
+            <img src="{{ pokemon.front_default }}" style="height: auto; width: 80%;" alt="{{ pokemon.name }}">
+            <div class="card-body">
+                <h5 class="card-title" style="font-weight: bold;">{{ pokemon.name }}</h5>
+                {% if pokemon.type2 %}
+                    <p class="type-badge">{{ pokemon.type1 }}</p><p>{{ pokemon.type2 }}</p>
+                {% else %}
+                    <p class="type-badge">{{ pokemon.type1 }}</p>
+                {% endif %}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    <button style="text-transform: uppercase; font-weight: bold;border-radius: 4rem; margin-top: 7%; margin-right: 5%;padding:2%; font-size: 2rem;" type="button" class="btn btn-primary" onclick="window.location.reload()">Generate New Team</button>
+</div>
+</div>
+{% endblock %}
+

@@ -1,27 +1,52 @@
+
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<div class="container">
-    <div class="">
-        <div class="">
-            <img src="{{ pokemon.front_default }}" class="" alt="{{ pokemon.name }}">
-            <img src="{{ pokemon.back_default }}" class="" alt="{{ pokemon.name }}">
-            <img src="{{ pokemon.front_shiny }}" class="" alt="{{ pokemon.name }}">
-            <img src="{{ pokemon.back_shiny }}" class="" alt="{{ pokemon.name }}">
-        </div>
-        <div class="">
-            <h1>{{ pokemon.name }}</h1>
-            <p>Type: {{ pokemon.type }}</p>
-            <p>Height: {{ pokemon.height }}</p>
-            <p>Weight: {{ pokemon.weight }}</p>
-            <p>Attack: {{ pokemon.attack }}</p>
-            <p>Defense: {{ pokemon.defense }}</p>
-            <p>Special Attack: {{ pokemon.special_attack }}</p>
-            <p>Special Defense: {{ pokemon.special_defense }}</p>
-            <p>HP: {{ pokemon.hp }}</p>
-            <p>Speed: {{ pokemon.speed }}</p>
+<div style="margin-top: 3rem;" class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="font-weight: bold; text-transform: uppercase; ">{{ pokemon.name }}</h1>
+            {% if pokemon.type2 %}
+                <p class="type-badge">{{ pokemon.type1 }}</p><p>{{ pokemon.type2 }}</p>
+            {% else %}
+                <p class="type-badge">{{ pokemon.type1 }}</p>
+            {% endif %}
         </div>
     </div>
-</div>
+    <div>
+        <img src="{{ pokemon.front_default }}" style="width: 250px; height: auto;" alt="{{ pokemon.name }}">
+        <img src="{{ pokemon.back_default }}" style="width: 250px; height: auto;" alt="{{ pokemon.name }}">
+        <img src="{{ pokemon.front_shiny }}" style="width: 250px; height: auto;" alt="{{ pokemon.name }}">
+        <img src="{{ pokemon.back_shiny }}" style="width: 250px; height: auto;" alt="{{ pokemon.name }}">
+    </div>
+    <div class="row" style="background-color: white; border-radius: 2rem;">
+        <div class="col-12">
+            <table class="table" style="margin-top: 2rem;">
+                <thead>
+                    <tr>
+                        <th scope="col">Number</th>
+                        <th scope="col">Height</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">HP</th>
+                        <th scope="col">Attack</th>
+                        <th scope="col">Defense</th>
+                        <th scope="col">Special Attack</th>
+                        <th scope="col">Special Defense</th>
+                        <th scope="col">Speed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ pokemon.id }}</td>
+                        <td>{{ pokemon.height }}M</td>
+                        <td>{{ pokemon.weight }}KG</td>
+                        <td>{{ pokemon.hp }}</td>
+                        <td>{{ pokemon.attack }}</td>
+                        <td>{{ pokemon.defense }}</td>
+                        <td>{{ pokemon.special_attack }}</td>
+                        <td>{{ pokemon.special_defense }}</td>
+                        <td>{{ pokemon.speed }}</td>
+                    </tr>
+            </table>
+        </div>
 {% endblock %}
