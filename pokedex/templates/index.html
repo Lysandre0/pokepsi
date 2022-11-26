@@ -13,10 +13,10 @@
                         <p>{{ pokemon.name }}</p>
                     </h5>
                     {% if pokemon.type2 %}
-                    <span style="display:flex; ">
+                    <span style="display:flex;">
                         <p class="type-badge">{{ pokemon.type1 }}</p>
                         <p class="type-badge">{{ pokemon.type2 }}</p>
-                        </span>
+                    </span>
                     {% else %}
                         <p class="type-badge">{{ pokemon.type1 }}</p>
                 {% endif %}

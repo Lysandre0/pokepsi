@@ -12,7 +12,10 @@
             <div class="card-body">
                 <h5 class="card-title" style="font-weight: bold;">{{ pokemon.name }}</h5>
                 {% if pokemon.type2 %}
-                    <p class="type-badge">{{ pokemon.type1 }}</p><p>{{ pokemon.type2 }}</p>
+                    <span style="display:flex;flex-wrap: wrap;">
+                        <p class="type-badge">{{ pokemon.type1 }}</p>
+                        <p class="type-badge">{{ pokemon.type2 }}</p>
+                    </span>
                 {% else %}
                     <p class="type-badge">{{ pokemon.type1 }}</p>
                 {% endif %}

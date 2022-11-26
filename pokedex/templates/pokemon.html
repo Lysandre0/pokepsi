@@ -2,14 +2,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div style="margin-top: 3rem;" class="container">
+<div style="margin-top: 2rem; margin-right: 3.5rem;" class="container">
     <div class="row">
         <div class="col-12">
-            <h1 style="font-weight: bold; text-transform: uppercase; ">{{ pokemon.name }}</h1>
+            <h1 style="font-weight: bold; text-transform: uppercase;">{{ pokemon.name }}</h1>
             {% if pokemon.type2 %}
-                <p class="type-badge">{{ pokemon.type1 }}</p><p>{{ pokemon.type2 }}</p>
+                    <span style="display:flex; justify-content: center;">
+                        <p class="type-badge" style="background-color: white;">{{ pokemon.type1 }}</p>
+                        <p class="type-badge" style="background-color: white;">{{ pokemon.type2 }}</p>
+                    </span>
             {% else %}
-                <p class="type-badge">{{ pokemon.type1 }}</p>
+            <span style="display:flex; justify-content: center;">
+                <p class="type-badge" style="background-color: white;">{{ pokemon.type1 }}</p>
+                </span>
             {% endif %}
         </div>
     </div>

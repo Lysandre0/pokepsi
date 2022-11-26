@@ -54,4 +54,3 @@ def team(request):
     for i in range(0, 6):
         team.append(random.choice(pokemon))
     return render(request, 'team.html', {'team': team})
-
