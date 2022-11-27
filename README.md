@@ -13,8 +13,8 @@ First generation pokedex of Pokemon Game (Blue/Red/Green/Yellow)
 7. go to 127.0.0.1:8000/pokedex or 127.0.0.1:8000/admin
 8. enjoy! 
 
-admin login : admin
-admin password : admin00
+- admin login : admin
+- admin password : admin00
 
 ## Technologies
 - Python
