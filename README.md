@@ -5,9 +5,16 @@ First generation pokedex of Pokemon Game (Blue/Red/Green/Yellow)
 ## Get Started
 
 1. git clone https://github.com/Lysandre0/pokepsi.git
-2. cd pokepsi
-3. python manage.py runserver
-4. Enjoy! 
+2. install python
+3. install pip
+4. install django with pip
+5. cd pokepsi
+6. python manage.py runserver
+7. go to 127.0.0.1:8000/pokedex or 127.0.0.1:8000/admin
+8. enjoy! 
+
+admin login : admin
+admin password : admin00
 
 ## Technologies
 - Python
